@@ -4,8 +4,8 @@
 struct datehead
 {
     double time;
-    double ac[2];
-    double Gy[2];
+    double ac[3];
+    double Gy[3];
    struct datehead *next;
 };
 int main()
@@ -24,13 +24,14 @@ else {
     system("pause");
 while(!feof(fp)){ 
     p=(struct datehead*)malloc(sizeof(struct datehead));
-    fscanf(fp,"%Lf",&time);
-    fscanf(fp,"%Lf",&ac_x);
-    fscanf(fp,"%Lf",&ac_y);
-    fscanf(fp,"%Lf",&ac_z);
-    fscanf(fp,"%Lf",&gy_x);
-    fscanf(fp,"%Lf",&gy_y);
-    fscanf(fp,"%Lf",&gy_z);
+// 从文件中读取数据并存储到相应的变量中
+fscanf(fp, "%lf", &time);
+fscanf(fp, "%lf", &ac_x);
+fscanf(fp, "%lf", &ac_y);
+fscanf(fp, "%lf", &ac_z);
+fscanf(fp, "%lf", &gy_x);
+fscanf(fp, "%lf", &gy_y);
+fscanf(fp, "%lf", &gy_z);
 	p->time=time;
     p->ac[0]=ac_x;
     p->ac[1]=ac_y;
@@ -51,8 +52,11 @@ while(!feof(fp)){
 fclose(fp);
 f=head;
 while(f!=NULL){
-    // printf("%lf\b",f->time);
-    printf("%lf\n",p->Gy[2]);
+    printf("%lf\n",f->time);
+    for(int i=0;i<3;i++)
+    {printf("%lf\n",f->ac[i]);
+    printf("%lf\n",f->Gy[i]);
+    }
     f=f->next;
 }
 system("pause");
